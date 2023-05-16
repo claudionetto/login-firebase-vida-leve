@@ -18,6 +18,10 @@ class LoginController {
     onUpdate();
   }
 
+  void clearError() {
+    error = ''; // Define o valor da propriedade error como vazio
+  }
+
   final formKey = GlobalKey<FormState>();
   final VoidCallback onSuccessLogin;
   final VoidCallback onUpdate;
@@ -35,7 +39,7 @@ class LoginController {
       }
     } catch (e) {
       isLoading = false;
-      error = "Não foi possivel fazer login";
+      error = "Email e/ou senha incorretos";
     }
   }
 
@@ -49,9 +53,8 @@ class LoginController {
     }
   }
 
-  String? validateEmail(String? email) => email != null && email.isNotEmpty
-      ? null
-      : "O email precisa ser diferente de nulo";
+  String? validateEmail(String? email) =>
+      email != null && email.isNotEmpty ? null : "Email Invalido";
 
   String? validatePassword(String? password) =>
       password != null && password.length >= 6
